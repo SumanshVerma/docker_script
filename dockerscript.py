@@ -11,17 +11,22 @@ def dockeremove():
     dockerdeleteimage = input("Enter the image name from the following list to delete")
     subprocess.call(['sudo','docker','rm', '-f',dockerdeleteimage])
 
+def dockersave():
+    subprocess.call(['sudo','docker','ps','-a'])
+    dockersaveimage = input("Enter the TAR archive name to save the image")
+    subprocess.call(['sudo','docker','save',dockersaveimage,'-o',''])
+
 def main():
     print("Welcome to Command Selector!")
-    print("1. Option 1")
-    print("2. Option 2")
+    print("1. Start Docker Container ")
+    print("2. Remove Docker Container ")
     print("3. Option 3")
     print("4. Option 4")
     print("5. Option 5")
     print("0. Exit")
     
     while True:
-        key = input ("Enter Digits from (1-8) :\n 1. Network Information \n 2. DiskUsage \n 3. Make a new Directory \n 4. Delete a Directory \n 5. RAM Usage \n 6. Add a new user \n 7. Delete a user \n E to exit \n ")
+        key = input ("Enter Digits from (1-8) \n")
 
         if key == '1':
             dockerstart()
