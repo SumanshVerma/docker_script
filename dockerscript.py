@@ -41,7 +41,7 @@ def main():
     print("0. Exit")
     
     while True:
-        key = input ("Enter Digits from (1-8) \n")
+        key = input ("Enter Digits from (1-7) \n")
 
         if key == '1':
             dockerstart()
