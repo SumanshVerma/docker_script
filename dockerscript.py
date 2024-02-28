@@ -13,16 +13,31 @@ def dockeremove():
 
 def dockersave():
     subprocess.call(['sudo','docker','ps','-a'])
-    dockersaveimage = input("Enter the TAR archive name to save the image")
-    subprocess.call(['sudo','docker','save',dockersaveimage,'-o',''])
+    dockersaveimage = input("Enter the image to be saved")
+    dockertarimage = input("Enter the TAR archive name to save the image")
+    subprocess.call(['sudo','docker','save',dockersaveimage,'-o',dockertarimage])
+    
+def dockerload(dockertarimage):
+    subprocess.call(['docker','load','-i',dockertarimage])
+
+def runningcontainer():
+    subprocess.call(['sudo','docker','ps'])
+
+def stoppedcontainer():
+    subprocess.call(['sudo','docker', 'ps', '-a', '|', 'grep', 'Exit'])
+
+def showimages():
+    subprocess.call(['sudo','docker','images','ls'])
 
 def main():
     print("Welcome to Command Selector!")
     print("1. Start Docker Container ")
     print("2. Remove Docker Container ")
-    print("3. Option 3")
-    print("4. Option 4")
-    print("5. Option 5")
+    print("3. Save an Image")
+    print("4. Load the saved image")
+    print("5. Show running containers")
+    print("6. Show stopped containers")
+    print("7. Show all images ")
     print("0. Exit")
     
     while True:
@@ -30,8 +45,24 @@ def main():
 
         if key == '1':
             dockerstart()
-        
+            
         elif key == '2':
             dockeremove()
+        elif key == '3':
+            dockersave()
+        elif key == '4':
+            dockerload()
+        elif key == '5':
+            runningcontainer()
+        elif key == '6':
+            stoppedcontainer()
+        elif key == '7':
+            showimages()
+        elif key == 'e': 
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid key. Please press a number key from 1-7.")                     
+
 if __name__ == "__main__":
     main()
