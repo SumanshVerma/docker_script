@@ -24,7 +24,7 @@ def runningcontainer():
     subprocess.call(['sudo','docker','ps'])
 
 def stoppedcontainer():
-    subprocess.call(['sudo','docker', 'ps', '-a', '|', 'grep', 'Exit'])
+    subprocess.call(['sudo','docker', 'ps', '-f', 'status=exited'])
 
 def showimages():
     subprocess.call(['sudo','docker','images','ls'])
@@ -45,7 +45,7 @@ def main():
 
         if key == '1':
             dockerstart()
-            
+
         elif key == '2':
             dockeremove()
         elif key == '3':
